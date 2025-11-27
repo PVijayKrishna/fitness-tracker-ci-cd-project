@@ -2,6 +2,7 @@ import React, { useEffect } from "react";
 import { useForm } from "react-hook-form";
 import { Flame, Footprints, Clock, CalendarDays } from "lucide-react";
 import axios from "axios";
+import { API_BASE_URL } from "../apiConfig";
 
 function DailyGoals({
   title = "Daily Goals",
@@ -82,7 +83,7 @@ function DailyGoals({
   const onSubmit = async (data) => {
     try {
       console.log("Sending data:", data);
-      await axios.post("http://localhost:8085/progress", data, {
+      await axios.post(`${API_BASE_URL}/progress`, data, {
         headers: {
           Authorization: `Bearer ${localStorage.getItem("token")}`,
         },

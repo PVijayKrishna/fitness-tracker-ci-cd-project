@@ -1,5 +1,6 @@
 import React from "react";
 import DailyGoals from "../components/DailyGoals";
+import { API_BASE_URL } from "../apiConfig";
 
 function Progress() {
   return (

@@ -4,6 +4,7 @@ import { CalendarIcon, Smile, StickyNote } from 'lucide-react';
 import { toast, ToastContainer, Slide } from 'react-toastify';
 import axios from 'axios';
 import 'react-toastify/dist/ReactToastify.css';
+import { API_BASE_URL } from "../../apiConfig";
 
 const moodMap = {
   1: {
@@ -54,7 +55,7 @@ function MoodForm() {
     try {
       const token = localStorage.getItem('token');
 
-      await axios.post('http://localhost:8085/mood', data, {
+      await axios.post(`${API_BASE_URL}/mood`, data, {
         headers: {
           Authorization: 'Bearer ' + token,
           'Content-Type': 'application/json',

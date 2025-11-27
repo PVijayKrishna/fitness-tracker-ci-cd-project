@@ -12,6 +12,7 @@ import {
 import moment from 'moment';
 import axios from 'axios';
 import Loader from '../Loader';
+import { API_BASE_URL } from '../../apiConfig';
 
 ChartJS.register(CategoryScale, LinearScale, BarElement, Title, Tooltip, Legend);
 
@@ -54,7 +55,7 @@ function SleepChart({ width = '', marginTop = '', marginLR = '' }) {
     setChartData(null);
 
     try {
-      const res = await axios.get(`http://localhost:8085/analytics/sleep-summary?month=${queryMonth}`, {
+      const res = await axios.get(`${API_BASE_URL}/analytics/sleep-summary?month=${queryMonth}`, {
         headers: {
           Authorization: `Bearer ${localStorage.getItem('token')}`
         }

@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { Target, Footprints, Clock } from 'lucide-react';
 import axios from 'axios';
+import { API_BASE_URL } from '../../apiConfig';
 
 export default function GoalsProgress({ tittle = "n/a" }) {
   const [dailyData, setDailyData] = useState(null);
@@ -14,7 +15,7 @@ export default function GoalsProgress({ tittle = "n/a" }) {
       setErrorMsg(null);
       try {
         const response = await axios.get(
-          `http://localhost:8085/progress?type=${tittle === 'Weekly Goals' ? 'weekly' : 'daily'}`,
+          `${API_BASE_URL}/progress?type=${tittle === 'Weekly Goals' ? 'weekly' : 'daily'}`,
           {
             headers: {
               Authorization: `Bearer ${localStorage.getItem("token")}`,

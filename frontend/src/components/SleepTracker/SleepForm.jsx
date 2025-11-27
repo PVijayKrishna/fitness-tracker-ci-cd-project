@@ -4,6 +4,7 @@ import { CalendarIcon, Clock, Star, StickyNote } from 'lucide-react';
 import { toast, ToastContainer, Slide } from 'react-toastify';
 import axios from 'axios';
 import 'react-toastify/dist/ReactToastify.css';
+import { API_BASE_URL } from "../../apiConfig";
 
 function SleepForm() {
   const { register, handleSubmit, reset, formState: { errors } } = useForm();
@@ -35,7 +36,7 @@ function SleepForm() {
         notes: data.notes
       };
 
-      await axios.post('http://localhost:8085/sleep', payload, {
+      await axios.post(`${API_BASE_URL}/sleep`, payload, {
         headers: {
           'Authorization': `Bearer ${token}`,
         },

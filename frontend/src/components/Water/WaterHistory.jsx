@@ -3,6 +3,7 @@ import { Calendar, Search } from 'lucide-react';
 import { toast, ToastContainer, Slide } from 'react-toastify';
 import { Loader } from 'rsuite';
 import axios from 'axios';
+import { API_BASE_URL } from "../../apiConfig";
 import 'react-toastify/dist/ReactToastify.css';
 
 function WaterHistory() {
@@ -16,7 +17,7 @@ function WaterHistory() {
     setLoading(true);
     try {
       const token = localStorage.getItem('token');
-      const res = await axios.get('http://localhost:8085/water', {
+      const res = await axios.get(`${API_BASE_URL}/water`, {
         headers: {
           'Authorization': 'Bearer ' + token,
           'Content-Type': 'application/json'
@@ -35,7 +36,7 @@ function WaterHistory() {
     setLoading(true);
     try {
       const token = localStorage.getItem('token');
-      const res = await axios.get(`http://localhost:8085/water/byDate?date=${filterDate}`, {
+      const res = await axios.get(`${API_BASE_URL}/water/byDate?date=${filterDate}`, {
         headers: {
           'Authorization': 'Bearer ' + token,
           'Content-Type': 'application/json'
@@ -52,7 +53,7 @@ function WaterHistory() {
   const handleDelete = async (id) => {
     try {
       const token = localStorage.getItem('token');
-      await axios.delete(`http://localhost:8085/water/${id}`, {
+      await axios.delete(`${API_BASE_URL}/water/${id}`, {
         headers: {
           'Authorization': 'Bearer ' + token,
           'Content-Type': 'application/json'
@@ -82,7 +83,7 @@ function WaterHistory() {
   const handleSave = async (id) => {
     try {
       const token = localStorage.getItem('token');
-      await axios.put(`http://localhost:8085/water/${id}`, editData, {
+      await axios.put(`${API_BASE_URL}/water/${id}`, editData, {
         headers: {
           'Authorization': 'Bearer ' + token,
           'Content-Type': 'application/json'

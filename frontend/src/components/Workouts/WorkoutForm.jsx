@@ -4,6 +4,7 @@ import { CalendarIcon, Dumbbell, Clock, Flame, Footprints } from 'lucide-react';
 import { toast, ToastContainer, Slide } from 'react-toastify';
 import axios from 'axios';
 import 'react-toastify/dist/ReactToastify.css';
+import { API_BASE_URL } from "../../apiConfig";
 
 function WorkoutForm() {
   const { register, handleSubmit, reset, formState: { errors } } = useForm();
@@ -12,7 +13,7 @@ function WorkoutForm() {
     try {
       const token = localStorage.getItem('token');
 
-      await axios.post('http://localhost:8085/activity', data, {
+      await axios.post(`${API_BASE_URL}/activity`, data, {
         headers: {
           'Authorization': `Bearer ${token}`,
         },

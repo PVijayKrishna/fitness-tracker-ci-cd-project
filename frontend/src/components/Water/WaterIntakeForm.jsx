@@ -4,6 +4,7 @@ import { CalendarIcon, Droplet } from "lucide-react";
 import { toast, ToastContainer, Slide } from "react-toastify";
 import axios from "axios";
 import "react-toastify/dist/ReactToastify.css";
+import { API_BASE_URL } from "../../apiConfig";
 
 function WaterIntakeForm() {
   const {
@@ -17,7 +18,7 @@ function WaterIntakeForm() {
     try {
       const token = localStorage.getItem("token");
 
-      await axios.post("http://localhost:8085/water", data, {
+      await axios.post(`${API_BASE_URL}/water`, data, {
         headers: {
           Authorization: `Bearer ${token}`,
         },

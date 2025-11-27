@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { User } from 'lucide-react';
+import { API_BASE_URL } from "../apiConfig";
 
 function UserProfileForm() {
   const {
@@ -14,7 +15,7 @@ function UserProfileForm() {
   const [isEditable, setIsEditable] = useState(false);
   const [message, setMessage] = useState("");
 
-  const API_URL = `http://localhost:8085/user/me`;
+  const API_URL = `${API_BASE_URL}/user/me`;
 
   useEffect(() => {
     const fetchUserData = async () => {

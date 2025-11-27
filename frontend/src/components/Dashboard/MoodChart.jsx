@@ -13,6 +13,7 @@ import {
 import moment from 'moment';
 import axios from 'axios';
 import Loader from '../Loader';
+import { API_BASE_URL } from '../../apiConfig';
 
 ChartJS.register(CategoryScale, LinearScale, PointElement, LineElement, Title, Tooltip, Legend);
 
@@ -55,7 +56,7 @@ function MoodChart({ width = '', marginTop = '', marginLR = '' }) {
     setChartData(null);
 
     try {
-      const res = await axios.get(`http://localhost:8085/analytics/mood?month=${queryMonth}`, {
+      const res = await axios.get(`${API_BASE_URL}/analytics/mood?month=${queryMonth}`, {
         headers: {
           Authorization: `Bearer ${localStorage.getItem('token')}`
         }

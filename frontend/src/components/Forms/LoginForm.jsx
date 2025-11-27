@@ -5,6 +5,7 @@ import { Dumbbell } from "lucide-react";
 import Input from "../Input";
 import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
+import { API_BASE_URL } from "../../apiConfig";
 import { toast, ToastContainer, Slide } from "react-toastify";
 import 'react-toastify/dist/ReactToastify.css';
 
@@ -20,7 +21,7 @@ export default function LoginForm() {
 
   const onSubmit = async (data) => {
     try {
-      const response = await axios.post("http://localhost:8085/auth/login", data);
+      const response = await axios.post(`${API_BASE_URL}/auth/login`, data);
 
       const { token } = response.data;
 

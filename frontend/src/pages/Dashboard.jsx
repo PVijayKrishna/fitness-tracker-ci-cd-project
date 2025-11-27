@@ -7,12 +7,13 @@ import DoughnutChart from '../components/Dashboard/PiChart';
 import WaterIntakeChart from '../components/Dashboard/WaterIntakeChart';
 import SleepTrackerChart from '../components/Dashboard/SleepTrackerChart';
 import MoodChart from '../components/Dashboard/MoodChart';
+import { API_BASE_URL } from "../apiConfig";
 
 export default function Dashboard() {
   const [profile, setProfile] = useState(null);
   const [loading, setLoading] = useState(true);
 
-  const API_URL = 'http://localhost:8085/user/me';
+  const API_URL = `${API_BASE_URL}/user/me`;
 
   useEffect(() => {
     const fetchProfile = async () => {

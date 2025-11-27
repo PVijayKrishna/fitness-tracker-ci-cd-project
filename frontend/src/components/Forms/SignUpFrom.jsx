@@ -6,6 +6,7 @@ import { Dumbbell } from "lucide-react";
 import axios from "axios";
 import { toast, ToastContainer, Slide } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import { API_BASE_URL } from "../../apiConfig";
 
 export default function SignUpForm() {
   const {
@@ -19,7 +20,7 @@ export default function SignUpForm() {
 
   const onSubmit = async (data) => {
     try {
-      const response = await axios.post("http://localhost:8085/auth/register", data);
+      const response = await axios.post(`${API_BASE_URL}/auth/register`, data);
 
       toast.success(response.data?.message || "Registration successful!");
       reset(); // Clear form

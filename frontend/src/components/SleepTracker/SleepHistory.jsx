@@ -4,6 +4,7 @@ import { toast, ToastContainer, Slide } from "react-toastify";
 import { Loader } from "rsuite";
 import axios from "axios";
 import "react-toastify/dist/ReactToastify.css";
+import { API_BASE_URL } from "../../apiConfig";
 
 function SleepHistory() {
   const [sleeps, setSleeps] = useState([]);
@@ -15,12 +16,13 @@ function SleepHistory() {
   const [modalContent, setModalContent] = useState("");
   const [isEditingNote, setIsEditingNote] = useState(false);
 
+
   const token = localStorage.getItem("token");
 
   const fetchAllSleeps = async () => {
     setLoading(true);
     try {
-      const res = await axios.get("http://localhost:8085/sleep", {
+      const res = await axios.get(`${API_BASE_URL}/sleep`, {
         headers: { Authorization: "Bearer " + token },
       });
       setSleeps(res.data);
@@ -36,7 +38,7 @@ function SleepHistory() {
     setLoading(true);
     try {
       const res = await axios.get(
-        `http://localhost:8085/sleep/byDate?date=${filterDate}`,
+        `${API_BASE_URL}/sleep/byDate?date=${filterDate}`,
         {
           headers: { Authorization: "Bearer " + token },
         }
@@ -91,7 +93,7 @@ function SleepHistory() {
     };
 
     try {
-      await axios.put(`http://localhost:8085/sleep/${id}`, updatedEntry, {
+      await axios.put(`${API_BASE_URL}/sleep/${id}`, updatedEntry, {
         headers: { Authorization: "Bearer " + token },
       });
 

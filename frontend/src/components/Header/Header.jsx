@@ -3,6 +3,7 @@ import { Link, useNavigate } from "react-router-dom";
 import { UserCircle2, Menu, X, Download } from "lucide-react";
 import { toast, ToastContainer, Slide } from "react-toastify";
 import 'react-toastify/dist/ReactToastify.css';
+import { API_BASE_URL } from "../../apiConfig";
 
 const navLinks = [
   { name: "Home", href: "/" },
@@ -31,7 +32,7 @@ const Header = ({ isAuthenticated, handleLoginToggle }) => {
 
   const handleExport = async () => {
     try {
-      const response = await fetch('http://localhost:8085/export/all', {
+      const response = await fetch(`${API_BASE_URL}/export/all`, {
         headers: {
           Authorization: `Bearer ${localStorage.getItem('token')}`
         }
