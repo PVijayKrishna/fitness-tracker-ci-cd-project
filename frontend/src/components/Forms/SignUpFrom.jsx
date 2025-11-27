@@ -19,7 +19,7 @@ export default function SignUpForm() {
 
   const onSubmit = async (data) => {
     try {
-      const response = await axios.post("http://localhost:8080/auth/register", data);
+      const response = await axios.post("http://localhost:8085/auth/register", data);
 
       toast.success(response.data?.message || "Registration successful!");
       reset(); // Clear form

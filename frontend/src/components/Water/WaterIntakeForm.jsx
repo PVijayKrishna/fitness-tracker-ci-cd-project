@@ -17,7 +17,7 @@ function WaterIntakeForm() {
     try {
       const token = localStorage.getItem("token");
 
-      await axios.post("http://localhost:8080/water", data, {
+      await axios.post("http://localhost:8085/water", data, {
         headers: {
           Authorization: `Bearer ${token}`,
         },

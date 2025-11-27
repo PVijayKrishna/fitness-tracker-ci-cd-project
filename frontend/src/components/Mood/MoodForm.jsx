@@ -54,7 +54,7 @@ function MoodForm() {
     try {
       const token = localStorage.getItem('token');
 
-      await axios.post('http://localhost:8080/mood', data, {
+      await axios.post('http://localhost:8085/mood', data, {
         headers: {
           Authorization: 'Bearer ' + token,
           'Content-Type': 'application/json',

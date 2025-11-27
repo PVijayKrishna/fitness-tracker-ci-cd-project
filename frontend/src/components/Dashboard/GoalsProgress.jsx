@@ -14,7 +14,7 @@ export default function GoalsProgress({ tittle = "n/a" }) {
       setErrorMsg(null);
       try {
         const response = await axios.get(
-          `http://localhost:8080/progress?type=${tittle === 'Weekly Goals' ? 'weekly' : 'daily'}`,
+          `http://localhost:8085/progress?type=${tittle === 'Weekly Goals' ? 'weekly' : 'daily'}`,
           {
             headers: {
               Authorization: `Bearer ${localStorage.getItem("token")}`,

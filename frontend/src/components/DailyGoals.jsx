@@ -82,7 +82,7 @@ function DailyGoals({
   const onSubmit = async (data) => {
     try {
       console.log("Sending data:", data);
-      await axios.post("http://localhost:8080/progress", data, {
+      await axios.post("http://localhost:8085/progress", data, {
         headers: {
           Authorization: `Bearer ${localStorage.getItem("token")}`,
         },

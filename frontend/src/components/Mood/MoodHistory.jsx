@@ -29,7 +29,7 @@ function MoodHistory() {
   const fetchAllMoods = async () => {
     setLoading(true);
     try {
-      const res = await axios.get("http://localhost:8080/mood", {
+      const res = await axios.get("http://localhost:8085/mood", {
         headers: { Authorization: "Bearer " + token },
       });
       setMoods(res.data);
@@ -45,7 +45,7 @@ function MoodHistory() {
     setLoading(true);
     try {
       const res = await axios.get(
-        `http://localhost:8080/mood/byDate?date=${filterDate}`,
+        `http://localhost:8085/mood/byDate?date=${filterDate}`,
         {
           headers: { Authorization: "Bearer " + token },
         }
@@ -60,7 +60,7 @@ function MoodHistory() {
 
   const handleDelete = async (id) => {
     try {
-      await axios.delete(`http://localhost:8080/mood/${id}`, {
+      await axios.delete(`http://localhost:8085/mood/${id}`, {
         headers: { Authorization: "Bearer " + token },
       });
       setMoods((prev) => prev.filter((m) => m.id !== id));
@@ -86,7 +86,7 @@ function MoodHistory() {
 
   const handleSave = async (id) => {
     try {
-      await axios.put(`http://localhost:8080/mood/${id}`, editData, {
+      await axios.put(`http://localhost:8085/mood/${id}`, editData, {
         headers: {
           Authorization: "Bearer " + token,
           "Content-Type": "application/json",

@@ -12,7 +12,7 @@ export default function Dashboard() {
   const [profile, setProfile] = useState(null);
   const [loading, setLoading] = useState(true);
 
-  const API_URL = 'http://localhost:8080/user/me';
+  const API_URL = 'http://localhost:8085/user/me';
 
   useEffect(() => {
     const fetchProfile = async () => {

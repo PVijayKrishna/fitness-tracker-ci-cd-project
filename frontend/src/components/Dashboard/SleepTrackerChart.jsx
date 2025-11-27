@@ -54,7 +54,7 @@ function SleepChart({ width = '', marginTop = '', marginLR = '' }) {
     setChartData(null);
 
     try {
-      const res = await axios.get(`http://localhost:8080/analytics/sleep-summary?month=${queryMonth}`, {
+      const res = await axios.get(`http://localhost:8085/analytics/sleep-summary?month=${queryMonth}`, {
         headers: {
           Authorization: `Bearer ${localStorage.getItem('token')}`
         }

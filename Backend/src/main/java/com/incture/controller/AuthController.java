@@ -43,57 +43,59 @@ public class AuthController {
 
     @PostMapping("/register")
     public ResponseEntity<Map<String, String>> register(@RequestBody RegisterRequest request) {
-        if (userRepository.findByEmail(request.getEmail()).isPresent()) {
-            Map<String, String> response = new HashMap<>();
-            response.put("message", "Email already registered.");
-            return ResponseEntity.badRequest().body(response);
-        }
-
-        User user = new User(
-                request.getName(),
-                request.getEmail(),
-                passwordEncoder.encode(request.getPassword()),
-                request.getAge(),
-                request.getHeight(),
-                request.getWeight()
-        );
-        userRepository.save(user);
-
         Map<String, String> response = new HashMap<>();
-        response.put("message", "User registered successfully!");
-        return ResponseEntity.ok(response);
+
+        try {
+            // Check if email exists
+            if (userRepository.findByEmail(request.getEmail()).isPresent()) {
+                response.put("message", "Email already registered.");
+                return ResponseEntity.badRequest().body(response);
+            }
+
+            // Create User
+            // NOTE: Ensure your User Entity constructor matches this order of arguments exactly!
+            User user = new User(
+                    request.getName(),
+                    request.getEmail(),
+                    passwordEncoder.encode(request.getPassword()),
+                    request.getAge(),
+                    request.getHeight(),
+                    request.getWeight()
+            );
+
+            userRepository.save(user);
+
+            response.put("message", "User registered successfully!");
+            return ResponseEntity.ok(response);
+
+        } catch (Exception e) {
+            // Log the error on the server side so you can see it in IntelliJ/Eclipse console
+            e.printStackTrace();
+            response.put("message", "Registration failed: " + e.getMessage());
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(response);
+        }
     }
 
 
     @PostMapping("/login")
     public ResponseEntity<?> login(@RequestBody LoginRequest request) {
         try {
-            // Try authentication (Spring Security will check username/password)
             authManager.authenticate(
                     new UsernamePasswordAuthenticationToken(
                             request.getEmail(), request.getPassword()
                     )
             );
         } catch (BadCredentialsException e) {
-            // Wrong password or email
             return ResponseEntity.status(HttpStatus.UNAUTHORIZED)
                     .body(Map.of("message", "Invalid email or password"));
         } catch (Exception e) {
-            // Other errors
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR)
                     .body(Map.of("message", "An error occurred"));
         }
 
-        // If authentication successful, generate token
         UserDetails userDetails = userDetailsService.loadUserByUsername(request.getEmail());
         String token = jwtUtil.generateToken(userDetails);
 
         return ResponseEntity.ok(new AuthResponse(token));
-    }
-
-    @PostMapping("/logout")
-    public ResponseEntity<String> logout() {
-        // No backend logout logic for JWT
-        return ResponseEntity.ok("Logged out successfully");
     }
 }

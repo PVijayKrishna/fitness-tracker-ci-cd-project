@@ -46,7 +46,7 @@ function WaterIntakeChart({ width = '', marginTop = '', marginLR = '' }) {
     setChartData(null);
 
     try {
-      const res = await axios.get(`http://localhost:8080/analytics/water-intake?month=${queryMonth}`, {
+      const res = await axios.get(`http://localhost:8085/analytics/water-intake?month=${queryMonth}`, {
         headers: {
           Authorization: `Bearer ${localStorage.getItem('token')}`
         }

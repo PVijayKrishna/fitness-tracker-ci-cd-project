@@ -16,7 +16,7 @@ function WaterHistory() {
     setLoading(true);
     try {
       const token = localStorage.getItem('token');
-      const res = await axios.get('http://localhost:8080/water', {
+      const res = await axios.get('http://localhost:8085/water', {
         headers: {
           'Authorization': 'Bearer ' + token,
           'Content-Type': 'application/json'
@@ -35,7 +35,7 @@ function WaterHistory() {
     setLoading(true);
     try {
       const token = localStorage.getItem('token');
-      const res = await axios.get(`http://localhost:8080/water/byDate?date=${filterDate}`, {
+      const res = await axios.get(`http://localhost:8085/water/byDate?date=${filterDate}`, {
         headers: {
           'Authorization': 'Bearer ' + token,
           'Content-Type': 'application/json'
@@ -52,7 +52,7 @@ function WaterHistory() {
   const handleDelete = async (id) => {
     try {
       const token = localStorage.getItem('token');
-      await axios.delete(`http://localhost:8080/water/${id}`, {
+      await axios.delete(`http://localhost:8085/water/${id}`, {
         headers: {
           'Authorization': 'Bearer ' + token,
           'Content-Type': 'application/json'
@@ -82,7 +82,7 @@ function WaterHistory() {
   const handleSave = async (id) => {
     try {
       const token = localStorage.getItem('token');
-      await axios.put(`http://localhost:8080/water/${id}`, editData, {
+      await axios.put(`http://localhost:8085/water/${id}`, editData, {
         headers: {
           'Authorization': 'Bearer ' + token,
           'Content-Type': 'application/json'

@@ -20,7 +20,7 @@ function SleepHistory() {
   const fetchAllSleeps = async () => {
     setLoading(true);
     try {
-      const res = await axios.get("http://localhost:8080/sleep", {
+      const res = await axios.get("http://localhost:8085/sleep", {
         headers: { Authorization: "Bearer " + token },
       });
       setSleeps(res.data);
@@ -36,7 +36,7 @@ function SleepHistory() {
     setLoading(true);
     try {
       const res = await axios.get(
-        `http://localhost:8080/sleep/byDate?date=${filterDate}`,
+        `http://localhost:8085/sleep/byDate?date=${filterDate}`,
         {
           headers: { Authorization: "Bearer " + token },
         }
@@ -91,7 +91,7 @@ function SleepHistory() {
     };
 
     try {
-      await axios.put(`http://localhost:8080/sleep/${id}`, updatedEntry, {
+      await axios.put(`http://localhost:8085/sleep/${id}`, updatedEntry, {
         headers: { Authorization: "Bearer " + token },
       });
 

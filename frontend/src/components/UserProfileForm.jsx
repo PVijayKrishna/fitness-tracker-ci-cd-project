@@ -14,7 +14,7 @@ function UserProfileForm() {
   const [isEditable, setIsEditable] = useState(false);
   const [message, setMessage] = useState("");
 
-  const API_URL = `http://localhost:8080/user/me`;
+  const API_URL = `http://localhost:8085/user/me`;
 
   useEffect(() => {
     const fetchUserData = async () => {
