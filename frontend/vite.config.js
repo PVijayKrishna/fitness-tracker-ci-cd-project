@@ -4,5 +4,6 @@ import tailwindcss from "@tailwindcss/vite";
 
 // https://vite.dev/config/
 export default defineConfig({
+  base: '/HealthConnect/', // Matches the Tomcat context path (Artifact ID)
   plugins: [react(), tailwindcss()],
 });

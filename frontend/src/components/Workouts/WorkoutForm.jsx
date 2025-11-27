@@ -12,7 +12,7 @@ function WorkoutForm() {
     try {
       const token = localStorage.getItem('token');
 
-      await axios.post('http://localhost:8080/activity', data, {
+      await axios.post('http://localhost:8085/activity', data, {
         headers: {
           'Authorization': `Bearer ${token}`,
         },

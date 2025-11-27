@@ -4,7 +4,7 @@ info:
   description: "A wellness and health tracking API for logging and analyzing user activities, sleep, mood, hydration, and goals."
   version: 1.0.0
 servers:
-- url: http://localhost:8080
+- url: http://localhost:8085
   description: Local development server
 paths:
   /auth/register:

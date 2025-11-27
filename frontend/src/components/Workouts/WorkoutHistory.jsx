@@ -18,7 +18,7 @@ function WorkoutHistory() {
     setLoading(true);
     try {
       const token = localStorage.getItem('token');
-      const res = await axios.get('http://localhost:8080/activity', {
+      const res = await axios.get('http://localhost:8085/activity', {
         headers: {
           'Authorization': 'Bearer ' + token,
           'Content-Type': 'application/json'
@@ -37,7 +37,7 @@ function WorkoutHistory() {
     setLoading(true);
     try {
       const token = localStorage.getItem('token');
-      const res = await axios.get(`http://localhost:8080/activity/byDate?date=${filterDate}`, {
+      const res = await axios.get(`http://localhost:8085/activity/byDate?date=${filterDate}`, {
         headers: {
           'Authorization': 'Bearer ' + token,
           'Content-Type': 'application/json'
@@ -54,7 +54,7 @@ function WorkoutHistory() {
   const handleDelete = async (id) => {
     try {
       const token = localStorage.getItem('token');
-      await axios.delete(`http://localhost:8080/activity/${id}`, {
+      await axios.delete(`http://localhost:8085/activity/${id}`, {
         headers: {
           'Authorization': 'Bearer ' + token
         }
@@ -83,7 +83,7 @@ function WorkoutHistory() {
   const handleSave = async (id) => {
     try {
       const token = localStorage.getItem('token');
-      await axios.put(`http://localhost:8080/activity/${id}`, editData, {
+      await axios.put(`http://localhost:8085/activity/${id}`, editData, {
         headers: {
           'Authorization': 'Bearer ' + token,
           'Content-Type': 'application/json'
