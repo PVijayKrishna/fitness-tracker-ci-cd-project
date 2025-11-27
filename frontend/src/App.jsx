@@ -42,7 +42,12 @@ function App() {
         <Route path="waterHistory" element={<WaterHistory />} />
         
       </Route>
-    )
+    ),
+    
+    {
+      basename: import.meta.env.BASE_URL 
+    }
+
   );
 
   return <RouterProvider router={router} />;
