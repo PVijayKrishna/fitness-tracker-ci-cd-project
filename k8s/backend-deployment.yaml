@@ -1,0 +1,44 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: healthconnect-backend
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: healthconnect-backend
+  template:
+    metadata:
+      labels:
+        app: healthconnect-backend
+    spec:
+      containers:
+      - name: backend
+        image: healthconnect-backend:latest # Ensure you build/tag this image
+        imagePullPolicy: IfNotPresent
+        ports:
+        - containerPort: 8085
+        env:
+        - name: SPRING_DATASOURCE_URL
+          value: "jdbc:mysql://mysql:3306/healthconnect"
+        - name: SPRING_DATASOURCE_USERNAME
+          value: "root"
+        - name: SPRING_DATASOURCE_PASSWORD
+          valueFrom:
+            secretKeyRef:
+              name: mysql-secret
+              key: password
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: healthconnect-backend-service
+spec:
+  type: NodePort # Or LoadBalancer if on Cloud
+  selector:
+    app: healthconnect-backend
+  ports:
+    - protocol: TCP
+      port: 8080        # External port (matches your apiConfig.js expectation)
+      targetPort: 8085  # Container port (application.properties server.port)
+      nodePort: 30080   # Optional: fixed node port for local access
